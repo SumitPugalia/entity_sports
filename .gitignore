@@ -24,3 +24,5 @@ entity_sports-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+config/dev.exs
