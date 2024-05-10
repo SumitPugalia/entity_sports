@@ -1,4 +1,11 @@
 defmodule EntitySports.Helper do
+  @moduledoc """
+  Helper Module
+  """
+
+  @doc """
+  Helper for Render Many
+  """
   def render_many(items, mod) do
     result =
       items
@@ -15,6 +22,9 @@ defmodule EntitySports.Helper do
     end
   end
 
+  @doc """
+  Helper for Appending Raw Response
+  """
   def append_raw_response(response, raw_response),
     do: Map.put(response, "raw_response", raw_response)
 end

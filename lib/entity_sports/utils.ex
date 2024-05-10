@@ -1,32 +1,34 @@
 defmodule EntitySports.Utils do
-  
+  @moduledoc """
+  Utility Module
+  """
   require Logger
   @http_client_opts Application.compile_env(:entity_sports, :http_client_opts, [])
-  
-  @doc """
-  POSTs the given body to the given URI with an authorized request & standard
-  options, logging the result.
-  If a map, the body is JSON encoded before POSTing. Will raise if encoding
-  fails.
-  """
-  @spec post(
-          url :: String.t(),
-          body :: String.t() | map(),
-          headers :: HTTPoison.Base.headers(),
-          extra_opts :: keyword()
-        ) ::
-          HTTPoison.Response.t()
-  def post(url, body, headers, extra_opts \\ [timeout: 50_000, recv_timeout: 50_000])
 
-  def post(url, body, headers, extra_opts) when is_binary(body) do
-    response = HTTPoison.post(url, body, headers, extra_opts)
+  # @doc """
+  # POSTs the given body to the given URI with an authorized request & standard
+  # options, logging the result.
+  # If a map, the body is JSON encoded before POSTing. Will raise if encoding
+  # fails.
+  # """
+  # @spec post(
+  #         url :: String.t(),
+  #         body :: String.t() | map(),
+  #         headers :: HTTPoison.Base.headers(),
+  #         extra_opts :: keyword()
+  #       ) ::
+  #         HTTPoison.Response.t()
+  # def post(url, body, headers, extra_opts \\ [timeout: 50_000, recv_timeout: 50_000])
 
-    Logger.debug(
-      "POST #{inspect(url)}: #{inspect(headers)}: #{inspect(response)} : #{inspect(body)}"
-    )
+  # def post(url, body, headers, extra_opts) when is_binary(body) do
+  #   response = HTTPoison.post(url, body, headers, extra_opts)
 
-    response
-  end
+  #   Logger.debug(
+  #     "POST #{inspect(url)}: #{inspect(headers)}: #{inspect(response)} : #{inspect(body)}"
+  #   )
+
+  #   response
+  # end
 
   @doc """
   GET the given body to the given URI with an authorized request & standard
@@ -40,7 +42,7 @@ defmodule EntitySports.Utils do
           HTTPoison.Response.t()
   def get(
         url,
-        headers \\ %{"Content-Type" => "application/json", "accept" => "application/json"},
+        headers \\ [{"Content-Type", "application/json"}, {"accept", "application/json"}],
         extra_opts \\ [timeout: 50_000, recv_timeout: 50_000]
       )
 
