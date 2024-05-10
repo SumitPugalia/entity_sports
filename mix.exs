@@ -21,7 +21,7 @@ defmodule EntitySports.MixProject do
   def application do
     [
       mod: [],
-      extra_applications: [:logger, :jose]
+      extra_applications: [:logger]
     ]
   end
 
@@ -29,13 +29,12 @@ defmodule EntitySports.MixProject do
   defp deps do
     [
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
-      {:credo, "~> 1.2", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.7.5", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.12", only: :test},
-      {:jason, "~> 1.2"},
-      {:ecto, "~> 3.6"},
-      {:httpoison, "~> 1.7"},
-      {:poison, "~> 4.0"},
-      {:jose, "~> 1.11"}
+      {:jason, "~> 1.4.1"},
+      {:ecto, "~> 3.11.2"},
+      {:httpoison, "~> 2.2.1"},
+      {:poison, "~> 5.0"}
     ] ++ deps(Mix.target(), Mix.env())
   end
 

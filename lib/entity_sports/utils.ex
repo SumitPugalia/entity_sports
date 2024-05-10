@@ -72,9 +72,12 @@ defmodule EntitySports.Utils do
         deserialize_fn
       )
       when sc >= 200 and sc < 300 do
-    case Map.get(body, "status") |> status() do
-      :ok -> deserialize_fn.(Map.get(body, "response"))
-      :error -> {:error, sc, Map.get(body, "response")}
+    with {:ok, decoded_body} <- Jason.decode(body),
+         {:ok, _res} <- {Map.get(decoded_body, "status") |> status(), decoded_body} do
+      deserialize_fn.(Map.get(decoded_body, "response"))
+    else
+      {:error, %Jason.DecodeError{data: err}} -> {:error, 0, %{body: body, error: err}}
+      {:error, decoded_body} -> {:error, sc, Map.get(decoded_body, "response")}
     end
   end
 

@@ -1,4 +1,4 @@
-defmodule EntitySports.HttpClient do
+defmodule EntitySports.HTTPClient do
   @moduledoc """
   EntitySports API HTTP client implementation
   """
