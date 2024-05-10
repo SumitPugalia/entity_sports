@@ -1,6 +1,6 @@
 defmodule EntitySports.HTTPClient do
   @moduledoc """
-  EntitySports API HTTP client implementation
+  EntitySports API HTTP Client implementation
   """
   @behaviour EntitySports
 

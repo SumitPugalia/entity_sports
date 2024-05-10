@@ -1,6 +1,6 @@
 defmodule EntitySports do
   @moduledoc """
-  EntitySports API client interface
+  EntitySports API Interface
   """
 
   alias EntitySports.Model.Responses
@@ -8,7 +8,6 @@ defmodule EntitySports do
 
   @type error :: {:error, Ecto.Changeset.t(), map()} | {:error, integer(), any()}
 
-  # callbacks
   @doc """
   Provides information of all avaialable cricket seasons you have access. 
   A season is named as complete year ie: 2016 for all tournaments that happens 

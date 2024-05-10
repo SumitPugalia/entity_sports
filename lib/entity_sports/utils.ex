@@ -1,7 +1,8 @@
 defmodule EntitySports.Utils do
+  
   require Logger
-
   @http_client_opts Application.compile_env(:entity_sports, :http_client_opts, [])
+  
   @doc """
   POSTs the given body to the given URI with an authorized request & standard
   options, logging the result.

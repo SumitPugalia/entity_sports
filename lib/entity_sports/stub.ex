@@ -1,4 +1,8 @@
 defmodule EntitySports.Stub do
+  @moduledoc """
+  EntitySports API STUB
+  """
+
   @behaviour EntitySports
 
   alias EntitySports.Model.Responses
