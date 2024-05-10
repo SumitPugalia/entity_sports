@@ -1,30 +1,22 @@
 defmodule EntitySports.HttpClient do
   @moduledoc """
-  This module contains low-level functions for interacting with the BillDesk.
+  EntitySports API HTTP client implementation
   """
   @behaviour EntitySports
 
+  alias EntitySports.Model.Responses
   alias EntitySports.Utils
-  alias EntitySports.Responses
 
   require Logger
 
-  @bill_desk_endpoint Application.compile_env(:entity_sports, :bill_desk_endpoint)
-                      |> IO.inspect(label: "BillDesk Endpoint")
-  @create_order_url @bill_desk_endpoint <> "/payments/ve1_2/orders/create"
-  @get_transaction_url @bill_desk_endpoint <> "/payments/ve1_2/transactions/get"
+  @base_url Application.compile_env(:entity_sports, :base_url)
+  @token Application.compile_env(:entity_sports, :token)
 
-  @spec create_order(signed_request :: String.t(), jws_header :: String.t()) ::
-          {:ok, any()} | {:error, any()}
-  def create_order(signed_request, jws_header) do
-    response = Utils.post(@create_order_url, signed_request, jws_header)
-    Utils.deserialize_response(response, &Responses.create_order_response/1)
-  end
+  @type error :: {:error, Ecto.Changeset.t(), map()} | {:error, integer(), any()}
 
-  @spec get_transaction(signed_request :: String.t(), jws_header :: String.t()) :: {:ok, any()}
-  def get_transaction(signed_request, jws_header) do
-    Logger.info("Transaction URL: #{inspect(@get_transaction_url)}")
-    response = Utils.post(@get_transaction_url, signed_request, jws_header)
-    Utils.deserialize_response(response, &Responses.create_transaction_response/1)
+  @impl true
+  def seasons() do
+    response = Utils.get(@base_url <> "seasons" <> "?token=#{@token}")
+    Utils.deserialize_response(response, &Responses.Seasons.render_many/1)
   end
 end
