@@ -10,7 +10,7 @@ by adding `entity_sports` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:entity_sports, "~> 0.1.0"}
+    {:entity_sports, "~> 1.0.0"}
   ]
 end
 ```
