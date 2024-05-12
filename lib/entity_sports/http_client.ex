@@ -4,7 +4,7 @@ defmodule EntitySports.HTTPClient do
   """
   @behaviour EntitySports
 
-  alias EntitySports.Helper
+  alias EntitySports.Constants
   alias EntitySports.Model.Responses
   alias EntitySports.Utils
 
@@ -31,5 +31,20 @@ defmodule EntitySports.HTTPClient do
 
     response
     |> Utils.deserialize_response(&Responses.Competitions.render_many/1)
+  end
+
+  @impl true
+  def matches(status, start_date, end_date, timezone, page, size) do
+    date = "#{start_date}_#{end_date}"
+    status = Constants.status(status)
+
+    response =
+      Utils.get(
+        @base_url <>
+          "matches" <>
+          "?token=#{@token}&status=#{status}&date=#{date}&timezone=#{timezone}&paged=#{page}&per_page=#{size}"
+      )
+
+    Utils.deserialize_response(response, &Responses.Matches.render_many/1)
   end
 end

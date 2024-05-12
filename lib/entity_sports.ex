@@ -15,8 +15,20 @@ defmodule EntitySports do
   ie: 2016-17 for matches happens between November-February or vice versa.
   """
   @callback seasons() :: {:ok, [Responses.Seasons.t()]} | error
+
   @callback competitions(status :: String.t(), page :: integer(), size :: integer()) ::
               {:ok, [Responses.Competitions.t()], total_pages :: integer(),
                total_items :: integer()}
+              | error
+
+  @callback matches(
+              status :: String.t(),
+              start_date :: String.t(),
+              end_date :: String.t(),
+              timezone :: String.t(),
+              page :: integer(),
+              size :: integer()
+            ) ::
+              {:ok, [Responses.Matches.t()], total_pages :: integer(), total_items :: integer()}
               | error
 end
