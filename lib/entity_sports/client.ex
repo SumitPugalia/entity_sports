@@ -8,4 +8,7 @@ defmodule EntitySports.Client do
 
   @impl true
   defdelegate seasons, to: @client_module
+
+  @impl true
+  defdelegate competitions(status, page, size), to: @client_module
 end
