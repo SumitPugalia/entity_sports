@@ -31,4 +31,8 @@ defmodule EntitySports do
             ) ::
               {:ok, [Responses.Matches.t()], total_pages :: integer(), total_items :: integer()}
               | error
+
+  @callback match(match_id :: integer()) :: {:ok, Responses.Matches.t()} | error
+
+  @callback match_fantasy(match_id :: integer()) :: {:ok, Responses.MatchFantasy.t()} | error
 end

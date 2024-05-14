@@ -7,6 +7,87 @@ defmodule EntitySports.Stub do
 
   alias EntitySports.Model.Responses
 
+  @competition %{
+    cid: 127_740,
+    title: "Maharashtra Premier League",
+    abbr: "Maharashtra Premier League",
+    type: "tournament",
+    category: "domestic",
+    match_format: "t20",
+    season: "2023",
+    status: "result",
+    datestart: "2023-06-15",
+    dateend: "2023-06-29",
+    country: "in",
+    total_matches: "19",
+    total_rounds: "1",
+    total_teams: "8"
+  }
+
+  @teama %{
+    team_id: 127_851,
+    name: "Puneri Bappa",
+    short_name: "PB",
+    logo_url:
+      "https://images.entitysport.com/assets/uploads/2023/06/Rectangle-3348-2023-06-13T172828.792.png",
+    scores_full: "129/6 (15 ov)",
+    scores: "129/6",
+    overs: "15"
+  }
+
+  @teamb %{
+    team_id: 127_851,
+    name: "Puneri Bappa",
+    short_name: "PB",
+    logo_url:
+      "https://images.entitysport.com/assets/uploads/2023/06/Rectangle-3348-2023-06-13T172828.792.png",
+    scores_full: "129/6 (15 ov)",
+    scores: "129/6",
+    overs: "15"
+  }
+
+  @venue %{
+    venue_id: "24",
+    name: "Maharashtra Cricket Association Stadium",
+    location: "Pune",
+    country: "India",
+    timezone: ""
+  }
+
+  @toss %{
+    text: "Ratnagiri Jets elected to bowl",
+    winner: 127_855,
+    decision: 2
+  }
+
+  @player_points %{
+    pid: "43610",
+    name: "Kurtis Patterson",
+    role: "bat",
+    rating: "9",
+    point: "21",
+    starting11: "4",
+    run: "1",
+    four: "0",
+    six: "0",
+    sr: "0",
+    fifty: "0",
+    duck: "0",
+    wkts: "0",
+    maidenover: "0",
+    er: "0",
+    catch: "16",
+    runoutstumping: "0",
+    runoutthrower: "0",
+    runoutcatcher: "0",
+    directrunout: "0",
+    stumping: "0",
+    thirty: "0",
+    bonus: "0",
+    bonuscatch: "0",
+    bonusbowedlbw: "0"
+  }
+
   @impl true
   def seasons(),
     do:
@@ -66,55 +147,16 @@ defmodule EntitySports.Stub do
            game_state: 0,
            game_state_str: "Default",
            domestic: "1",
-           competition: %{
-             cid: 127_740,
-             title: "Maharashtra Premier League",
-             abbr: "Maharashtra Premier League",
-             type: "tournament",
-             category: "domestic",
-             match_format: "t20",
-             season: "2023",
-             status: "result",
-             datestart: "2023-06-15",
-             dateend: "2023-06-29",
-             country: "in",
-             total_matches: "19",
-             total_rounds: "1",
-             total_teams: "8"
-           },
-           teama: %{
-             team_id: 127_851,
-             name: "Puneri Bappa",
-             short_name: "PB",
-             logo_url:
-               "https://images.entitysport.com/assets/uploads/2023/06/Rectangle-3348-2023-06-13T172828.792.png",
-             scores_full: "129/6 (15 ov)",
-             scores: "129/6",
-             overs: "15"
-           },
-           teamb: %{
-             team_id: 127_855,
-             name: "Ratnagiri Jets",
-             short_name: "RJ",
-             logo_url:
-               "https://images.entitysport.com/assets/uploads/2023/06/Rectangle-3348-2023-06-13T173123.286.png",
-             scores_full: "70/3 (7.4 ov)",
-             scores: "70/3",
-             overs: "7.4"
-           },
+           competition: @competition,
+           teama: @teama,
+           teamb: @teamb,
            date_start: "2023-06-24 08:30:00",
            date_end: "2023-06-24 18:30:00",
            timestamp_start: 1_687_595_400,
            timestamp_end: 1_687_631_400,
            date_start_ist: "2023-06-24 14:00:00",
            date_end_ist: "2023-06-25 00:00:00",
-           venue: %{
-             venue_id: "24",
-             name: "Maharashtra Cricket Association Stadium",
-             location: "Pune",
-             country: "India",
-             timezone: ""
-           },
+           venue: @venue,
            umpires: "Sandeep chavan (India), Vineet Kulkarni (India), Rohan Ingavale (India, TV)",
            referee: "",
            equation: "",
@@ -129,11 +171,117 @@ defmodule EntitySports.Stub do
            presquad_time: "2023-06-21 10:26:29",
            verify_time: "2023-06-24 06:48:47",
            match_dls_affected: "true",
-           toss: %{
-             text: "Ratnagiri Jets elected to bowl",
-             winner: 127_855,
-             decision: 2
-           }
+           toss: @toss
          }
        ], 1, 10}
+
+  @impl true
+  def match(_match_id),
+    do:
+      {:ok,
+       %Responses.Matches{
+         raw_response: %{},
+         match_id: 63951,
+         title: "Puneri Bappa vs Ratnagiri Jets",
+         short_title: "PB vs RJ",
+         subtitle: "Match 14",
+         match_number: "14",
+         format: 6,
+         format_str: "T20",
+         status: 2,
+         status_str: "Completed",
+         status_note: "Ratnagiri Jets won by 8 runs (VJD method)",
+         verified: "true",
+         pre_squad: "true",
+         odds_available: "false",
+         game_state: 0,
+         game_state_str: "Default",
+         domestic: "1",
+         competition: @competition,
+         teama: @teama,
+         teamb: @teamb,
+         date_start: "2023-06-24 08:30:00",
+         date_end: "2023-06-24 18:30:00",
+         timestamp_start: 1_687_595_400,
+         timestamp_end: 1_687_631_400,
+         date_start_ist: "2023-06-24 14:00:00",
+         date_end_ist: "2023-06-25 00:00:00",
+         venue: @venue,
+         umpires: "Sandeep chavan (India), Vineet Kulkarni (India), Rohan Ingavale (India, TV)",
+         referee: "",
+         equation: "",
+         live: "",
+         result: "RJ won by 8 runs (VJD method)",
+         result_type: 2,
+         win_margin: "8 runs (VJD method)",
+         winning_team_id: 127_855,
+         commentary: 1,
+         wagon: 0,
+         latest_inning_number: 2,
+         presquad_time: "2023-06-21 10:26:29",
+         verify_time: "2023-06-24 06:48:47",
+         match_dls_affected: "true",
+         toss: @toss
+       }}
+
+  @impl true
+  def match_fantasy(_match_id),
+    do:
+      {:ok,
+       %Responses.MatchFantasy{
+         raw_response: %{},
+         match_data: %Responses.Matches{
+           match_id: 63951,
+           title: "Puneri Bappa vs Ratnagiri Jets",
+           short_title: "PB vs RJ",
+           subtitle: "Match 14",
+           match_number: "14",
+           format: 6,
+           format_str: "T20",
+           status: 2,
+           status_str: "Completed",
+           status_note: "Ratnagiri Jets won by 8 runs (VJD method)",
+           verified: "true",
+           pre_squad: "true",
+           odds_available: "false",
+           game_state: 0,
+           game_state_str: "Default",
+           domestic: "1",
+           competition: @competition,
+           teama: @teama,
+           teamb: @teamb,
+           date_start: "2023-06-24 08:30:00",
+           date_end: "2023-06-24 18:30:00",
+           timestamp_start: 1_687_595_400,
+           timestamp_end: 1_687_631_400,
+           date_start_ist: "2023-06-24 14:00:00",
+           date_end_ist: "2023-06-25 00:00:00",
+           venue: @venue,
+           umpires: "Sandeep chavan (India), Vineet Kulkarni (India), Rohan Ingavale (India, TV)",
+           referee: "",
+           equation: "",
+           live: "",
+           result: "RJ won by 8 runs (VJD method)",
+           result_type: 2,
+           win_margin: "8 runs (VJD method)",
+           winning_team_id: 127_855,
+           commentary: 1,
+           wagon: 0,
+           latest_inning_number: 2,
+           presquad_time: "2023-06-21 10:26:29",
+           verify_time: "2023-06-24 06:48:47",
+           match_dls_affected: "true",
+           toss: @toss
+         },
+         points: %{
+           teama: %{
+             playing11: [@player_points],
+             substitute: [@player_points]
+           },
+           teamb: %{
+             playing11: [@player_points],
+             substitute: [@player_points]
+           }
+         }
+       }}
 end

@@ -14,4 +14,10 @@ defmodule EntitySports.Client do
 
   @impl true
   defdelegate matches(status, start_date, end_date, timezone, page, size), to: @client_module
+
+  @impl true
+  defdelegate match(match_id), to: @client_module
+
+  @impl true
+  defdelegate match_fantasy(match_id), to: @client_module
 end
