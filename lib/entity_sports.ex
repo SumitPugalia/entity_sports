@@ -38,4 +38,6 @@ defmodule EntitySports do
 
   @callback match_fantasy_squad(competition_id :: integer(), match_id :: integer()) ::
               {:ok, Responses.MatchFantasySquad.t()} | error
+
+  @callback player_statstic(player_id :: integer()) :: {:ok, Responses.PlayerStats.t()} | error
 end

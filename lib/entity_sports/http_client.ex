@@ -83,4 +83,16 @@ defmodule EntitySports.HTTPClient do
 
     Utils.deserialize_response(response, &Responses.MatchFantasySquad.render/1)
   end
+
+  @impl true
+  def player_statstic(player_id) do
+    response =
+      Utils.get(
+        @base_url <>
+          "players/#{player_id}/stats" <>
+          "?token=#{@token}"
+      )
+
+    Utils.deserialize_response(response, &Responses.PlayerStats.render/1)
+  end
 end

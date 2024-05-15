@@ -13,7 +13,7 @@ defmodule EntitySports.Model.Responses.PlayerStats do
   @primary_key false
   embedded_schema do
     field(:raw_response, :map)
-    embeds_one(:match_data, Model.Player)
+    embeds_one(:player, Model.Player)
     embeds_one(:batting, Model.BattingStats)
     embeds_one(:bowling, Model.BowlingStats)
   end
@@ -25,8 +25,9 @@ defmodule EntitySports.Model.Responses.PlayerStats do
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @fields)
-    |> cast_embed(:match_data)
-    |> cast_embed(:points)
+    |> cast_embed(:player)
+    |> cast_embed(:batting)
+    |> cast_embed(:bowling)
     |> apply_action(nil)
   end
 
