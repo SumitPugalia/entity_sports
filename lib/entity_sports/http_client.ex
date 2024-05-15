@@ -71,4 +71,16 @@ defmodule EntitySports.HTTPClient do
 
     Utils.deserialize_response(response, &Responses.MatchFantasy.render/1)
   end
+
+  @impl true
+  def match_fantasy_squad(competition_id, match_id) do
+    response =
+      Utils.get(
+        @base_url <>
+          "competitions/#{competition_id}/squads/#{match_id}" <>
+          "?token=#{@token}"
+      )
+
+    Utils.deserialize_response(response, &Responses.MatchFantasySquad.render/1)
+  end
 end

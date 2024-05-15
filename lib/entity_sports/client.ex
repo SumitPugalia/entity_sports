@@ -20,4 +20,7 @@ defmodule EntitySports.Client do
 
   @impl true
   defdelegate match_fantasy(match_id), to: @client_module
+
+  @impl true
+  defdelegate match_fantasy_squad(competition_id, match_id), to: @client_module
 end
