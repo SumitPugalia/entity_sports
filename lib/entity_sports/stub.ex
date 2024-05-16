@@ -129,7 +129,7 @@ defmodule EntitySports.Stub do
     do:
       {:ok,
        [
-         %Responses.Matches{
+         %Responses.Match{
            raw_response: %{},
            match_id: 63951,
            title: "Puneri Bappa vs Ratnagiri Jets",
@@ -179,7 +179,7 @@ defmodule EntitySports.Stub do
   def match(_match_id),
     do:
       {:ok,
-       %Responses.Matches{
+       %Responses.Match{
          raw_response: %{},
          match_id: 63951,
          title: "Puneri Bappa vs Ratnagiri Jets",
@@ -230,7 +230,7 @@ defmodule EntitySports.Stub do
       {:ok,
        %Responses.MatchFantasy{
          raw_response: %{},
-         match_data: %Responses.Matches{
+         match_data: %Responses.Match{
            match_id: 63951,
            title: "Puneri Bappa vs Ratnagiri Jets",
            short_title: "PB vs RJ",
@@ -344,9 +344,20 @@ defmodule EntitySports.Stub do
       ]
     }}
 
+  
   @impl true
   def player_statstic(_player_id),
     do: {:ok, %Responses.PlayerStats{
-      raw_response: %{}
+      raw_response: %{},
     }}
+
+  @impl true
+  def match_odds(_match_id),
+    do: {:ok, %Responses.MatchOdds{
+      raw_response: %{},
+    }}
+
+  @impl true
+  def settle_match_odds(_match_id),
+    do: {:ok, [%Responses.SettleMatchOdds{raw_response: %{}}], 1, 1}
 end

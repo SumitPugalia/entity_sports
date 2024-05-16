@@ -1,6 +1,6 @@
-defmodule EntitySports.Model.Responses.Matches do
+defmodule EntitySports.Model.Responses.Match do
   @moduledoc """
-  Matches response body model
+  Match response body model
   """
   use Ecto.Schema
   import Ecto.Changeset
@@ -95,8 +95,13 @@ defmodule EntitySports.Model.Responses.Matches do
     field(:presquad_time, :string)
     # match veirfied time
     field(:verify_time, :string)
+
+    field(:oddstype, :string)
+
     # an array of toss details of the match, see toss object properties.
     embeds_one(:toss, Model.Toss)
+    # embeds_one(:weathe, Model.Weather)
+    # embeds_one(:weathe, Model.Pitch)
   end
 
   @fields [
@@ -134,7 +139,8 @@ defmodule EntitySports.Model.Responses.Matches do
     :wagon,
     :latest_inning_number,
     :presquad_time,
-    :verify_time
+    :verify_time,
+    :oddstype
   ]
 
   def changeset(params) do

@@ -11,13 +11,16 @@ defmodule EntitySports.HTTPClient do
   require Logger
 
   @base_url Application.compile_env(:entity_sports, :base_url)
+  @url_prefix Application.compile_env(:entity_sports, :url_prefix)
+  @fanatsy_url @base_url  <> @url_prefix
+  @exchange_url @base_url <> "/exchange"
   @token Application.compile_env(:entity_sports, :token)
 
   @type error :: {:error, Ecto.Changeset.t(), map()} | {:error, integer(), any()}
 
   @impl true
   def seasons() do
-    response = Utils.get(@base_url <> "seasons" <> "?token=#{@token}")
+    response = Utils.get(@fanatsy_url <> "/seasons" <> "?token=#{@token}")
     Utils.deserialize_response(response, &Responses.Seasons.render_many/1)
   end
 
@@ -25,8 +28,8 @@ defmodule EntitySports.HTTPClient do
   def competitions(status, page, size) do
     response =
       Utils.get(
-        @base_url <>
-          "competitions" <> "?token=#{@token}&per_page=#{size}&paged=#{page}&status=#{status}"
+        @fanatsy_url <>
+          "/competitions" <> "?token=#{@token}&per_page=#{size}&paged=#{page}&status=#{status}"
       )
 
     response
@@ -40,32 +43,32 @@ defmodule EntitySports.HTTPClient do
 
     response =
       Utils.get(
-        @base_url <>
-          "matches" <>
+        @fanatsy_url <>
+          "/matches" <>
           "?token=#{@token}&status=#{status}&date=#{date}&timezone=#{timezone}&paged=#{page}&per_page=#{size}"
       )
 
-    Utils.deserialize_response(response, &Responses.Matches.render_many/1)
+    Utils.deserialize_response(response, &Responses.Match.render_many/1)
   end
 
   @impl true
   def match(match_id) do
     response =
       Utils.get(
-        @base_url <>
-          "matches/#{match_id}/info" <>
+        @fanatsy_url <>
+          "/matches/#{match_id}/info" <>
           "?token=#{@token}"
       )
 
-    Utils.deserialize_response(response, &Responses.Matches.render/1)
+    Utils.deserialize_response(response, &Responses.Match.render/1)
   end
 
   @impl true
   def match_fantasy(match_id) do
     response =
       Utils.get(
-        @base_url <>
-          "matches/#{match_id}/newpoint2" <>
+        @fanatsy_url <>
+          "/matches/#{match_id}/newpoint2" <>
           "?token=#{@token}"
       )
 
@@ -76,8 +79,8 @@ defmodule EntitySports.HTTPClient do
   def match_fantasy_squad(competition_id, match_id) do
     response =
       Utils.get(
-        @base_url <>
-          "competitions/#{competition_id}/squads/#{match_id}" <>
+        @fanatsy_url <>
+          "/competitions/#{competition_id}/squads/#{match_id}" <>
           "?token=#{@token}"
       )
 
@@ -88,11 +91,35 @@ defmodule EntitySports.HTTPClient do
   def player_statstic(player_id) do
     response =
       Utils.get(
-        @base_url <>
-          "players/#{player_id}/stats" <>
+        @fanatsy_url <>
+          "/players/#{player_id}/stats" <>
           "?token=#{@token}"
       )
 
     Utils.deserialize_response(response, &Responses.PlayerStats.render/1)
+  end
+
+  @impl true
+  def match_odds(match_id) do
+    response =
+      Utils.get(
+        @exchange_url <>
+          "/matches/#{match_id}/odds" <>
+          "?token=#{@token}"
+      )
+
+    Utils.deserialize_response(response, &Responses.MatchOdds.render/1)
+  end
+
+  @impl true
+  def settle_match_odds(match_id) do
+    response =
+      Utils.get(
+        @exchange_url <>
+          "/matches/#{match_id}/settleodds" <>
+          "?token=#{@token}"
+      )
+
+    Utils.deserialize_response(response, &Responses.SettleMatchOdds.render_many/1)
   end
 end

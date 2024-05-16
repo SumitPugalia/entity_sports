@@ -26,4 +26,10 @@ defmodule EntitySports.Client do
 
   @impl true
   defdelegate player_statstic(player_id), to: @client_module
+
+  @impl true
+  defdelegate match_odds(match_id), to: @client_module
+
+  @impl true
+  defdelegate settle_match_odds(match_id), to: @client_module
 end

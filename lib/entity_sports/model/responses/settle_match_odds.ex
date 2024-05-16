@@ -1,11 +1,10 @@
-defmodule EntitySports.Model.Responses.MatchFantasy do
+defmodule EntitySports.Model.Responses.SettleMatchOdds do
   @moduledoc """
-  Match response body model
+  SettleMatchOdds response body model
   """
   use Ecto.Schema
   import Ecto.Changeset
   alias EntitySports.Helper
-  alias EntitySports.Model
 
   @type t :: %__MODULE__{}
 
@@ -13,19 +12,39 @@ defmodule EntitySports.Model.Responses.MatchFantasy do
   @primary_key false
   embedded_schema do
     field(:raw_response, :map)
-    embeds_one(:match_data, Model.Match)
-    embeds_one(:points, Model.Point)
+    field(:team_batting, :string)
+    field(:title, :string)
+    field(:back_condition, :string)
+    field(:back, :string)
+    field(:lay_condition, :string)
+    field(:lay, :string)
+    field(:status, :string)
+    field(:settle, :string)
+    field(:settle_type, :string)
+    field(:settle_time, :string)
+    field(:verified, :string)
+    field(:verified_time, :string)
   end
 
   @fields [
-    :raw_response
+    :raw_response,
+    :team_batting,
+    :title,
+    :back_condition,
+    :back,
+    :lay_condition,
+    :lay,
+    :status,
+    :settle,
+    :settle_type,
+    :settle_time,
+    :verified,
+    :verified_time
   ]
 
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @fields)
-    |> cast_embed(:match_data)
-    |> cast_embed(:points)
     |> apply_action(nil)
   end
 
