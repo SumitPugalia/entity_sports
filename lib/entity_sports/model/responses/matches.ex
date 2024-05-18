@@ -146,7 +146,6 @@ defmodule EntitySports.Model.Responses.Match do
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @fields)
-    |> IO.inspect(label: "CS")
     |> cast_embed(:competition)
     |> cast_embed(:teama)
     |> cast_embed(:teamb)

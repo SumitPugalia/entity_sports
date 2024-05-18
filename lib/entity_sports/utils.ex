@@ -109,4 +109,5 @@ defmodule EntitySports.Utils do
 
   defp status("ok"), do: :ok
   defp status("error"), do: :error
+  defp status(_), do: :error
 end
