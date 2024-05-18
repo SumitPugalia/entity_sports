@@ -28,15 +28,11 @@ defmodule EntitySports.Model.Odd do
   ]
 
   def changeset(params) do
-    %__MODULE__{}
-    |> cast(params, @fields)
-    |> apply_action(nil)
+    changeset(%__MODULE__{}, params)
   end
 
-  def render(response) do
-    case response |> __MODULE__.changeset() do
-      {:ok, model} -> {:ok, model}
-      {:error, changeset} -> {:error, changeset, response}
-    end
+  def changeset(struct, params) do
+    struct
+    |> cast(params, @fields)
   end
 end

@@ -100,7 +100,7 @@ defmodule EntitySports.HTTPClient do
   end
 
   @impl true
-  def match_odds(match_id) do
+  def e_match_odds(match_id) do
     response =
       Utils.get(
         @exchange_url <>
@@ -112,7 +112,7 @@ defmodule EntitySports.HTTPClient do
   end
 
   @impl true
-  def settle_match_odds(match_id) do
+  def e_settle_match_odds(match_id) do
     response =
       Utils.get(
         @exchange_url <>
@@ -124,7 +124,7 @@ defmodule EntitySports.HTTPClient do
   end
 
   @impl true
-  def match_innings_commentary(match_id, inning_number) do
+  def e_match_innings_commentary(match_id, inning_number) do
     response =
       Utils.get(
         @exchange_url <>
@@ -133,5 +133,20 @@ defmodule EntitySports.HTTPClient do
       )
 
     Utils.deserialize_response(response, &Responses.MatchInningsCommentary.render/1)
+  end
+
+  @impl true
+  def e_matches(status, start_date, end_date, page, size) do
+    date = "#{start_date}_#{end_date}"
+    status = Constants.status(status)
+
+    response =
+      Utils.get(
+        @exchange_url <>
+          "/matches" <>
+          "?token=#{@token}&status=#{status}&date=#{date}&paged=#{page}&per_page=#{size}"
+      )
+
+    Utils.deserialize_response(response, &Responses.Match.render_many/1)
   end
 end

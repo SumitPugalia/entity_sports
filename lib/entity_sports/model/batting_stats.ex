@@ -23,7 +23,11 @@ defmodule EntitySports.Model.BattingStats do
   @fields []
 
   def changeset(params) do
-    %__MODULE__{}
+    changeset(%__MODULE__{}, params)
+  end
+
+  def changeset(struct, params) do
+    struct
     |> cast(params, @fields)
     |> cast_embed(:test)
     |> cast_embed(:odi)
@@ -32,13 +36,5 @@ defmodule EntitySports.Model.BattingStats do
     |> cast_embed(:lista)
     |> cast_embed(:firstclass)
     |> cast_embed(:t10)
-    |> apply_action(nil)
-  end
-
-  def render(response) do
-    case response |> __MODULE__.changeset() do
-      {:ok, model} -> {:ok, model}
-      {:error, changeset} -> {:error, changeset, response}
-    end
   end
 end

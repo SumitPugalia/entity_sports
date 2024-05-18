@@ -357,7 +357,7 @@ defmodule EntitySports.Stub do
        }}
 
   @impl true
-  def match_odds(_match_id),
+  def e_match_odds(_match_id),
     do:
       {:ok,
        %Responses.MatchOdds{
@@ -365,10 +365,61 @@ defmodule EntitySports.Stub do
        }}
 
   @impl true
-  def settle_match_odds(_match_id),
+  def e_settle_match_odds(_match_id),
     do: {:ok, [%Responses.SettleMatchOdds{raw_response: %{}}], 1, 1}
 
   @impl true
-  def match_innings_commentary(_match_id, _inning_number),
+  def e_match_innings_commentary(_match_id, _inning_number),
     do: {:ok, %Responses.MatchInningsCommentary{raw_response: %{}}}
+
+  @impl true
+  def e_matches(_status, _start_date, _end_date, _page, _size),
+    do:
+      {:ok,
+       [
+         %Responses.Match{
+           raw_response: %{},
+           match_id: 63951,
+           title: "Puneri Bappa vs Ratnagiri Jets",
+           short_title: "PB vs RJ",
+           subtitle: "Match 14",
+           match_number: "14",
+           format: 6,
+           format_str: "T20",
+           status: 2,
+           status_str: "Completed",
+           status_note: "Ratnagiri Jets won by 8 runs (VJD method)",
+           verified: "true",
+           pre_squad: "true",
+           odds_available: "false",
+           game_state: 0,
+           game_state_str: "Default",
+           domestic: "1",
+           competition: @competition,
+           teama: @teama,
+           teamb: @teamb,
+           date_start: "2023-06-24 08:30:00",
+           date_end: "2023-06-24 18:30:00",
+           timestamp_start: 1_687_595_400,
+           timestamp_end: 1_687_631_400,
+           date_start_ist: "2023-06-24 14:00:00",
+           date_end_ist: "2023-06-25 00:00:00",
+           venue: @venue,
+           umpires: "Sandeep chavan (India), Vineet Kulkarni (India), Rohan Ingavale (India, TV)",
+           referee: "",
+           equation: "",
+           live: "",
+           result: "RJ won by 8 runs (VJD method)",
+           result_type: 2,
+           win_margin: "8 runs (VJD method)",
+           winning_team_id: 127_855,
+           commentary: 1,
+           wagon: 0,
+           latest_inning_number: 2,
+           presquad_time: "2023-06-21 10:26:29",
+           verify_time: "2023-06-24 06:48:47",
+           match_dls_affected: "true",
+           toss: @toss
+         }
+       ], 1, 10}
 end

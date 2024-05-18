@@ -29,7 +29,7 @@ defmodule EntitySports.Model.Responses.Match do
     # match format name
     field(:format_str, :string)
     # 	numerical representation of match status. see match_statuss reference.
-    field(:status, :string)
+    field(:status, :integer)
     # 	match status name.
     field(:status_str, :string)
 
@@ -146,6 +146,7 @@ defmodule EntitySports.Model.Responses.Match do
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @fields)
+    |> IO.inspect(label: "CS")
     |> cast_embed(:competition)
     |> cast_embed(:teama)
     |> cast_embed(:teamb)

@@ -62,21 +62,18 @@ defmodule EntitySports.Model.MatchInning do
   ]
 
   def changeset(params) do
-    %__MODULE__{}
+    changeset(%__MODULE__{}, params)
+  end
+
+  def changeset(struct, params) do
+    struct
     |> cast(params, @fields)
     |> cast_embed(:batsmen)
     |> cast_embed(:bowlers)
     |> cast_embed(:fielder)
     # |> cast_embed(:powerplay)
     |> cast_embed(:did_not_bat)
-    # |> cast_embed(:review)
-    |> apply_action(nil)
-  end
 
-  def render(response) do
-    case response |> __MODULE__.changeset() do
-      {:ok, model} -> {:ok, model}
-      {:error, changeset} -> {:error, changeset, response}
-    end
+    # |> cast_embed(:review)
   end
 end

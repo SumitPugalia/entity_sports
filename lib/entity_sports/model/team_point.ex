@@ -15,18 +15,15 @@ defmodule EntitySports.Model.TeamPoint do
     embeds_many(:substitute, Model.PlayerPoints)
   end
 
+  @fields []
   def changeset(params) do
-    %__MODULE__{}
-    |> cast(params, [])
-    |> cast_embed(:playing11)
-    |> cast_embed(:substitute)
-    |> apply_action(nil)
+    changeset(%__MODULE__{}, params)
   end
 
-  def render(response) do
-    case response |> __MODULE__.changeset() do
-      {:ok, model} -> {:ok, model}
-      {:error, changeset} -> {:error, changeset, response}
-    end
+  def changeset(struct, params) do
+    struct
+    |> cast(params, @fields)
+    |> cast_embed(:playing11)
+    |> cast_embed(:substitute)
   end
 end

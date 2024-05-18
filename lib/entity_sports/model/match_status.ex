@@ -14,16 +14,14 @@ defmodule EntitySports.Model.MatchStatus do
     field(:game_state, :integer)
   end
 
+  @fields [:status, :game_state]
+
   def changeset(params) do
-    %__MODULE__{}
-    |> cast(params, [:status, :game_state])
-    |> apply_action(nil)
+    changeset(%__MODULE__{}, params)
   end
 
-  def render(response) do
-    case response |> __MODULE__.changeset() do
-      {:ok, model} -> {:ok, model}
-      {:error, changeset} -> {:error, changeset, response}
-    end
+  def changeset(struct, params) do
+    struct
+    |> cast(params, @fields)
   end
 end

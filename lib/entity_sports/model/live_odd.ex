@@ -16,19 +16,17 @@ defmodule EntitySports.Model.LiveOdd do
     embeds_one(:bookmaker, Model.Bookmaker)
   end
 
+  @fields []
+
   def changeset(params) do
-    %__MODULE__{}
-    |> cast(params, [])
+    changeset(%__MODULE__{}, params)
+  end
+
+  def changeset(struct, params) do
+    struct
+    |> cast(params, @fields)
     |> cast_embed(:matchodds)
     |> cast_embed(:tiedmatch)
     |> cast_embed(:bookmaker)
-    |> apply_action(nil)
-  end
-
-  def render(response) do
-    case response |> __MODULE__.changeset() do
-      {:ok, model} -> {:ok, model}
-      {:error, changeset} -> {:error, changeset, response}
-    end
   end
 end

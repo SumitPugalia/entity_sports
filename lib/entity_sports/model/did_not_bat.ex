@@ -16,16 +16,14 @@ defmodule EntitySports.Model.DidNotBat do
     field(:name, :string)
   end
 
+  @fields [:player_id, :name]
+
   def changeset(params) do
-    %__MODULE__{}
-    |> cast(params, [:player_id, :name])
-    |> apply_action(nil)
+    changeset(%__MODULE__{}, params)
   end
 
-  def render(response) do
-    case response |> __MODULE__.changeset() do
-      {:ok, model} -> {:ok, model}
-      {:error, changeset} -> {:error, changeset, response}
-    end
+  def changeset(struct, params) do
+    struct
+    |> cast(params, @fields)
   end
 end

@@ -28,11 +28,14 @@ defmodule EntitySports.Client do
   defdelegate player_statstic(player_id), to: @client_module
 
   @impl true
-  defdelegate match_odds(match_id), to: @client_module
+  defdelegate e_match_odds(match_id), to: @client_module
 
   @impl true
-  defdelegate settle_match_odds(match_id), to: @client_module
+  defdelegate e_settle_match_odds(match_id), to: @client_module
 
   @impl true
-  defdelegate match_innings_commentary(match_id, inning_id), to: @client_module
+  defdelegate e_match_innings_commentary(match_id, inning_id), to: @client_module
+
+  @impl true
+  defdelegate e_matches(status, start_date, end_date, page, size), to: @client_module
 end
