@@ -287,77 +287,88 @@ defmodule EntitySports.Stub do
 
   @impl true
   def match_fantasy_squad(_competition_id, _match_id),
-    do: {:ok, %Responses.MatchFantasySquad{
-      raw_response: %{},
-      squad_type: "per_team",
-      squads: [
-        %{
-          team_id: "14203",
-          title: "Sydney Sixers",
-          team: %{
-              tid: 14203,
-              title: "Sydney Sixers",
-              abbr: "SIX",
-              alt_name: "Sydney Sixers",
-              type: "club",
-              thumb_url: "https://images.entitysport.com/assets/uploads//2022/12/Sydney-Sixers.png",
-              logo_url: "https://images.entitysport.com/assets/uploads//2022/12/Sydney-Sixers.png",
-              country: "au",
-              sex: "male"
-          },
-          players: [
-            %{
-              pid: 93388,
-              title: "Josh Philippe",
-              short_name: "JR Philippe",
-              first_name: "Josh Philippe",
-              last_name: "",
-              middle_name: "",
-              birthdate: "1997-06-01",
-              birthplace: "",
-              country: "au",
-              primary_team: [],
-              logo_url: "",
-              playing_role: "wk",
-              batting_style: "Right Hand Bat",
-              bowling_style: "",
-              fielding_position: "",
-              recent_match: 0,
-              recent_appearance: 0,
-              fantasy_player_rating: 10,
-              alt_name: "",
-              facebook_profile: "",
-              twitter_profile: "",
-              instagram_profile: "",
-              debut_data: "",
-              thumb_url: "",
-              nationality: "Australia"
-            }
-          ],
-          last_match_played: [
-            %{
-              player_id: "93453",
-              title: "Jack Edwards"
-            }
-          ]
-        }
-      ]
-    }}
+    do:
+      {:ok,
+       %Responses.MatchFantasySquad{
+         raw_response: %{},
+         squad_type: "per_team",
+         squads: [
+           %{
+             team_id: "14203",
+             title: "Sydney Sixers",
+             team: %{
+               tid: 14203,
+               title: "Sydney Sixers",
+               abbr: "SIX",
+               alt_name: "Sydney Sixers",
+               type: "club",
+               thumb_url:
+                 "https://images.entitysport.com/assets/uploads//2022/12/Sydney-Sixers.png",
+               logo_url:
+                 "https://images.entitysport.com/assets/uploads//2022/12/Sydney-Sixers.png",
+               country: "au",
+               sex: "male"
+             },
+             players: [
+               %{
+                 pid: 93388,
+                 title: "Josh Philippe",
+                 short_name: "JR Philippe",
+                 first_name: "Josh Philippe",
+                 last_name: "",
+                 middle_name: "",
+                 birthdate: "1997-06-01",
+                 birthplace: "",
+                 country: "au",
+                 primary_team: [],
+                 logo_url: "",
+                 playing_role: "wk",
+                 batting_style: "Right Hand Bat",
+                 bowling_style: "",
+                 fielding_position: "",
+                 recent_match: 0,
+                 recent_appearance: 0,
+                 fantasy_player_rating: 10,
+                 alt_name: "",
+                 facebook_profile: "",
+                 twitter_profile: "",
+                 instagram_profile: "",
+                 debut_data: "",
+                 thumb_url: "",
+                 nationality: "Australia"
+               }
+             ],
+             last_match_played: [
+               %{
+                 player_id: "93453",
+                 title: "Jack Edwards"
+               }
+             ]
+           }
+         ]
+       }}
 
-  
   @impl true
   def player_statstic(_player_id),
-    do: {:ok, %Responses.PlayerStats{
-      raw_response: %{},
-    }}
+    do:
+      {:ok,
+       %Responses.PlayerStats{
+         raw_response: %{}
+       }}
 
   @impl true
   def match_odds(_match_id),
-    do: {:ok, %Responses.MatchOdds{
-      raw_response: %{},
-    }}
+    do:
+      {:ok,
+       %Responses.MatchOdds{
+         raw_response: %{}
+       }}
 
   @impl true
   def settle_match_odds(_match_id),
     do: {:ok, [%Responses.SettleMatchOdds{raw_response: %{}}], 1, 1}
+
+  @impl true
+  def match_innings_commentary(_match_id, _inning_number),
+    do: {:ok, %Responses.MatchInningsCommentary{raw_response: %{}}}
 end

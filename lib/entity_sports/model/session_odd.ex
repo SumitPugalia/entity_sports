@@ -10,14 +10,22 @@ defmodule EntitySports.Model.SessionOdd do
   @derive Jason.Encoder
   @primary_key false
   embedded_schema do
-    field(:team_batting, :string) #team batting
-    field(:title, :string) #title
-    field(:back_condition, :string)	#back condition
-    field(:back, :string) #back
-    field(:lay_condition, :string) #lay condition
-    field(:lay, :string) #lay
-    field(:status, :string) #status
-    field(:question_id, :integer) #unique key for each session
+    # team batting
+    field(:team_batting, :string)
+    # title
+    field(:title, :string)
+    # back condition
+    field(:back_condition, :string)
+    # back
+    field(:back, :string)
+    # lay condition
+    field(:lay_condition, :string)
+    # lay
+    field(:lay, :string)
+    # status
+    field(:status, :string)
+    # unique key for each session
+    field(:question_id, :integer)
   end
 
   @fields [

@@ -43,5 +43,11 @@ defmodule EntitySports do
 
   @callback match_odds(match_id :: integer()) :: {:ok, Responses.MatchOdds.t()} | error
 
-  @callback settle_match_odds(match_id :: integer()) :: {:ok, [Responses.SettleMatchOdds.t()], total_pages :: integer(), total_items :: integer()} | error
+  @callback settle_match_odds(match_id :: integer()) ::
+              {:ok, [Responses.SettleMatchOdds.t()], total_pages :: integer(),
+               total_items :: integer()}
+              | error
+
+  @callback match_innings_commentary(match_id :: integer(), inning_number :: integer()) ::
+              {:ok, Responses.MatchInningsCommentary.t()} | error
 end

@@ -1,6 +1,6 @@
-defmodule EntitySports.Model.Responses.MatchOdds do
+defmodule EntitySports.Model.Responses.MatchInningsCommentary do
   @moduledoc """
-  MatchOdds response body model
+  MatchInningsCommentary response body model
   """
   use Ecto.Schema
   import Ecto.Changeset
@@ -13,10 +13,9 @@ defmodule EntitySports.Model.Responses.MatchOdds do
   @primary_key false
   embedded_schema do
     field(:raw_response, :map)
-
-    embeds_one(:match_info, Model.Match)
-    embeds_one(:live_odds, Model.LiveOdd)
-    embeds_many(:session_odds, Model.SessionOdd)
+    embeds_one(:match, Model.MatchStatus)
+    embeds_one(:inning, Model.Inning)
+    embeds_many(:commentaries, Model.Commentary)
   end
 
   @fields [
@@ -26,9 +25,9 @@ defmodule EntitySports.Model.Responses.MatchOdds do
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @fields)
-    |> cast_embed(:match_info)
-    |> cast_embed(:live_odds)
-    |> cast_embed(:session_odds)
+    |> cast_embed(:match)
+    |> cast_embed(:inning)
+    |> cast_embed(:commentaries)
     |> apply_action(nil)
   end
 

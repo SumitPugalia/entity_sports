@@ -12,7 +12,7 @@ defmodule EntitySports.HTTPClient do
 
   @base_url Application.compile_env(:entity_sports, :base_url)
   @url_prefix Application.compile_env(:entity_sports, :url_prefix)
-  @fanatsy_url @base_url  <> @url_prefix
+  @fanatsy_url @base_url <> @url_prefix
   @exchange_url @base_url <> "/exchange"
   @token Application.compile_env(:entity_sports, :token)
 
@@ -121,5 +121,17 @@ defmodule EntitySports.HTTPClient do
       )
 
     Utils.deserialize_response(response, &Responses.SettleMatchOdds.render_many/1)
+  end
+
+  @impl true
+  def match_innings_commentary(match_id, inning_number) do
+    response =
+      Utils.get(
+        @exchange_url <>
+          "/matches/#{match_id}/innings/#{inning_number}/commentary" <>
+          "?token=#{@token}"
+      )
+
+    Utils.deserialize_response(response, &Responses.MatchInningsCommentary.render/1)
   end
 end

@@ -1,6 +1,6 @@
-defmodule EntitySports.Model.Odd do
+defmodule EntitySports.Model.MatchStatus do
   @moduledoc """
-  Odd model
+  MatchStatus model
   """
   use Ecto.Schema
   import Ecto.Changeset
@@ -10,26 +10,13 @@ defmodule EntitySports.Model.Odd do
   @derive Jason.Encoder
   @primary_key false
   embedded_schema do
-    # back
-    field(:back, :string)
-    # lay
-    field(:lay, :string)
-    # back volume
-    field(:back_volume, :string)
-    # lay volume
-    field(:lay_volume, :string)
+    field(:status, :integer)
+    field(:game_state, :integer)
   end
-
-  @fields [
-    :back,
-    :lay,
-    :back_volume,
-    :lay_volume
-  ]
 
   def changeset(params) do
     %__MODULE__{}
-    |> cast(params, @fields)
+    |> cast(params, [:status, :game_state])
     |> apply_action(nil)
   end
 

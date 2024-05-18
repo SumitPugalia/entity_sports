@@ -32,4 +32,7 @@ defmodule EntitySports.Client do
 
   @impl true
   defdelegate settle_match_odds(match_id), to: @client_module
+
+  @impl true
+  defdelegate match_innings_commentary(match_id, inning_id), to: @client_module
 end
