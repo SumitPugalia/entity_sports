@@ -55,7 +55,6 @@ defmodule EntitySports do
   # Completed = 2
   # Live = 3 
   # Abandoned = 4
-
   @callback e_matches(
               status :: String.t(),
               start_date :: String.t(),
