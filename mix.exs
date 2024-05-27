@@ -34,7 +34,7 @@ defmodule EntitySports.MixProject do
       {:jason, "~> 1.4.1"},
       {:ecto, "~> 3.11.2"},
       {:httpoison, "~> 2.2.1"},
-      {:poison, "~> 5.0"}
+      {:poison, "~> 3.0"}
     ] ++ deps(Mix.target(), Mix.env())
   end
 
