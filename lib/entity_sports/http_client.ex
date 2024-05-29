@@ -13,7 +13,6 @@ defmodule EntitySports.HTTPClient do
   @base_url Application.compile_env(:entity_sports, :base_url)
   @url_prefix Application.compile_env(:entity_sports, :url_prefix)
   @fanatsy_url @base_url <> @url_prefix
-  @exchange_url @base_url <> "/exchange"
   @token Application.compile_env(:entity_sports, :token)
 
   @type error :: {:error, Ecto.Changeset.t(), map()} | {:error, integer(), any()}
@@ -37,7 +36,7 @@ defmodule EntitySports.HTTPClient do
   end
 
   @impl true
-  def matches(status, start_date, end_date, timezone, page, size) do
+  def matches(status, start_date, end_date, page, size) do
     date = "#{start_date}_#{end_date}"
     status = Constants.status(status)
 
@@ -45,7 +44,7 @@ defmodule EntitySports.HTTPClient do
       Utils.get(
         @fanatsy_url <>
           "/matches" <>
-          "?token=#{@token}&status=#{status}&date=#{date}&timezone=#{timezone}&paged=#{page}&per_page=#{size}"
+          "?token=#{@token}&status=#{status}&date=#{date}&paged=#{page}&per_page=#{size}"
       )
 
     Utils.deserialize_response(response, &Responses.Match.render_many/1)
@@ -97,56 +96,5 @@ defmodule EntitySports.HTTPClient do
       )
 
     Utils.deserialize_response(response, &Responses.PlayerStats.render/1)
-  end
-
-  @impl true
-  def e_match_odds(match_id) do
-    response =
-      Utils.get(
-        @exchange_url <>
-          "/matches/#{match_id}/odds" <>
-          "?token=#{@token}"
-      )
-
-    Utils.deserialize_response(response, &Responses.MatchOdds.render/1)
-  end
-
-  @impl true
-  def e_settle_match_odds(match_id) do
-    response =
-      Utils.get(
-        @exchange_url <>
-          "/matches/#{match_id}/settleodds" <>
-          "?token=#{@token}"
-      )
-
-    Utils.deserialize_response(response, &Responses.SettleMatchOdds.render_many/1)
-  end
-
-  @impl true
-  def e_match_innings_commentary(match_id, inning_number) do
-    response =
-      Utils.get(
-        @exchange_url <>
-          "/matches/#{match_id}/innings/#{inning_number}/commentary" <>
-          "?token=#{@token}"
-      )
-
-    Utils.deserialize_response(response, &Responses.MatchInningsCommentary.render/1)
-  end
-
-  @impl true
-  def e_matches(status, start_date, end_date, page, size) do
-    date = "#{start_date}_#{end_date}"
-    status = Constants.status(status)
-
-    response =
-      Utils.get(
-        @exchange_url <>
-          "/matches" <>
-          "?token=#{@token}&status=#{status}&date=#{date}&paged=#{page}&per_page=#{size}"
-      )
-
-    Utils.deserialize_response(response, &Responses.Match.render_many/1)
   end
 end

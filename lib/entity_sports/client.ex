@@ -7,35 +7,25 @@ defmodule EntitySports.Client do
   @client_module Application.compile_env(:entity_sports, :client_module)
 
   @impl true
-  defdelegate seasons, to: @client_module
+  def seasons, do: @client_module.seasons()
 
   @impl true
-  defdelegate competitions(status, page, size), to: @client_module
+  def competitions(status, page, size), do: @client_module.competitions(status, page, size)
 
   @impl true
-  defdelegate matches(status, start_date, end_date, timezone, page, size), to: @client_module
+  def matches(status, start_date, end_date, page, size),
+    do: @client_module.matches(status, start_date, end_date, page, size)
 
   @impl true
-  defdelegate match(match_id), to: @client_module
+  def match(match_id), do: @client_module.match(match_id)
 
   @impl true
-  defdelegate match_fantasy(match_id), to: @client_module
+  def match_fantasy(match_id), do: @client_module.match_fantasy(match_id)
 
   @impl true
-  defdelegate match_fantasy_squad(competition_id, match_id), to: @client_module
+  def match_fantasy_squad(competition_id, match_id),
+    do: @client_module.match_fantasy_squad(competition_id, match_id)
 
   @impl true
-  defdelegate player_statstic(player_id), to: @client_module
-
-  @impl true
-  defdelegate e_match_odds(match_id), to: @client_module
-
-  @impl true
-  defdelegate e_settle_match_odds(match_id), to: @client_module
-
-  @impl true
-  defdelegate e_match_innings_commentary(match_id, inning_id), to: @client_module
-
-  @impl true
-  defdelegate e_matches(status, start_date, end_date, page, size), to: @client_module
+  def player_statstic(player_id), do: @client_module.player_statstic(player_id)
 end
