@@ -7,25 +7,25 @@ defmodule EntitySports.Client do
   @client_module Application.compile_env(:entity_sports, :client_module)
 
   @impl true
-  def seasons, do: @client_module.seasons()
+  defdelegate seasons, to: @client_module
 
   @impl true
-  def competitions(status, page, size), do: @client_module.competitions(status, page, size)
+  defdelegate competitions(status, page, size), to: @client_module
 
   @impl true
-  def matches(status, start_date, end_date, page, size),
-    do: @client_module.matches(status, start_date, end_date, page, size)
+  defdelegate matches(status, start_date, end_date, page, size),
+    to: @client_module
 
   @impl true
-  def match(match_id), do: @client_module.match(match_id)
+  defdelegate match(match_id), to: @client_module
 
   @impl true
-  def match_fantasy(match_id), do: @client_module.match_fantasy(match_id)
+  defdelegate match_fantasy(match_id), to: @client_module
 
   @impl true
-  def match_fantasy_squad(competition_id, match_id),
-    do: @client_module.match_fantasy_squad(competition_id, match_id)
+  defdelegate match_fantasy_squad(competition_id, match_id),
+    to: @client_module
 
   @impl true
-  def player_statstic(player_id), do: @client_module.player_statstic(player_id)
+  defdelegate player_statstic(player_id), to: @client_module
 end
