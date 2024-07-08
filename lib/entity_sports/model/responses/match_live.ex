@@ -34,7 +34,7 @@ defmodule EntitySports.Model.Responses.MatchLive do
     embeds_many(:batsmen, Model.MatchLiveBatsmen)
     embeds_many(:bowlers, Model.MatchLiveBowler)
     embeds_many(:commentaries, Model.Commentary)
-    embeds_many(:live_inning, Model.LiveInning)
+    # embeds_many(:live_inning, Model.LiveInning)
     # embeds_many(:teams, Model.Teams)
     # embeds_many(:players, Model.Players)
   end
