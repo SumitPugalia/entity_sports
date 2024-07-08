@@ -67,4 +67,9 @@ defmodule EntitySports do
   Player Profile API provides details of player info.
   """
   @callback player_statstic(player_id :: integer()) :: {:ok, Responses.PlayerStats.t()} | error
+
+  @doc """
+  Match Live API provides live details of match.
+  """
+  @callback match_live(match_id :: integer()) :: {:ok, Responses.MatchLive.t()} | error
 end

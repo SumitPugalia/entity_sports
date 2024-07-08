@@ -97,4 +97,16 @@ defmodule EntitySports.HTTPClient do
 
     Utils.deserialize_response(response, &Responses.PlayerStats.render/1)
   end
+
+  @impl true
+  def match_live(match_id) do
+    response =
+      Utils.get(
+        @fanatsy_url <>
+          "/matches/#{match_id}/live" <>
+          "?token=#{@token}"
+      )
+
+    Utils.deserialize_response(response, &Responses.MatchLive.render/1)
+  end
 end

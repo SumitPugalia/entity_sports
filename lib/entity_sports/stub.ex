@@ -355,4 +355,12 @@ defmodule EntitySports.Stub do
        %Responses.PlayerStats{
          raw_response: %{}
        }}
+
+  @impl true
+  def match_live(_match_id),
+    do:
+      {:ok,
+       %Responses.MatchLive{
+         raw_response: %{}
+       }}
 end

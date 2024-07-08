@@ -28,4 +28,7 @@ defmodule EntitySports.Client do
 
   @impl true
   defdelegate player_statstic(player_id), to: @client_module
+
+  @impl true
+  defdelegate match_live(match_id), to: @client_module
 end
